@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import Login from './login'
-import Dashboard from './dashboard'
+import Login from './Login'
+import Dashboard from './spotify/Dashboard'
 import 'bootstrap/dist/css/bootstrap.css'
 
 const code = new URLSearchParams(window.location.search).get('code');

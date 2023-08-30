@@ -35,6 +35,7 @@ app.post('/login', (req, res) => {
         clientSecret: process.env.CLIENT_SECRET,
     });
     spotifyApi.authorizationCodeGrant(code).then((data) => {
+        console.log(data);
         res.json({
             accessToken: data.body.access_token,
             refreshToken: data.body.refresh_token,
@@ -46,4 +47,6 @@ app.post('/login', (req, res) => {
     });
 });
 
-app.listen(3000);
+app.listen(3000, () => {
+    console.log(`Server is running on port ${process.env.PORT}`);
+});

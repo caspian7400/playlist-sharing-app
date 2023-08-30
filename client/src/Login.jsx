@@ -1,24 +1,32 @@
 // import React from 'react'
+import querystring from 'querystring'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSpotify, faSoundcloud , faApple , faYoutube} from '@fortawesome/free-brands-svg-icons'
+import { faSpotify, faSoundcloud, faApple, faYoutube } from '@fortawesome/free-brands-svg-icons'
 import { Container } from 'react-bootstrap'
 
-const AUTH_URL = 'https://accounts.spotify.com/authorize?client_id=3acea078e39840f395aab879e491c043&response_type=code&redirect_uri=http://localhost:5173&scope=playlist-modify-private'
+var scope = 'user-read-private user-read-email user-library-read user-library-modify playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public';
+const AUTH_URL = 'https://accounts.spotify.com/authorize?' +
+    querystring.stringify({
+        response_type: 'code',
+        client_id: '3acea078e39840f395aab879e491c043',
+        scope: scope,
+        redirect_uri: 'http://localhost:5173'
+    });
 export default function Login() {
     return (
-        <Container className='d-flex justify-content-center align-items-center' style={{ minHeight: '100vh', width: 'auto' }}>
+        <Container className='d-flex justify-content-center align-items-center' style={{ minHeight: '100vh', width: 'auto', backgroundColor: 'black' }}>
             <a className='btn btn-outline-dark btn-lg m-2' href={AUTH_URL}>
-                <FontAwesomeIcon icon={faSpotify} size='4x'/>
+                <FontAwesomeIcon icon={faSpotify} size='4x' className='hover:text-green' />
             </a>
             <a className='btn btn-outline-dark btn-lg m-2' href=''>
-                <FontAwesomeIcon icon={faSoundcloud} size='4x'/>
+                <FontAwesomeIcon icon={faSoundcloud} size='4x' className='' />
             </a>
             <a className='btn btn-outline-dark btn-lg m-2' href=''>
-                <FontAwesomeIcon icon={faApple} size='4x'/>
+                <FontAwesomeIcon icon={faApple} size='4x' className='' />
             </a>
             <a className='btn btn-outline-dark btn-lg m-2' href=''>
-                <FontAwesomeIcon icon={faYoutube} size='4x'/>
+                <FontAwesomeIcon icon={faYoutube} size='4x' className='hover:text-red-500' />
             </a>
         </Container>
     )
