@@ -16,17 +16,17 @@ const AUTH_URL = 'https://accounts.spotify.com/authorize?' +
 export default function Login() {
     return (
         <Container className='d-flex justify-content-center align-items-center' style={{ minHeight: '100vh', width: 'auto', backgroundColor: 'black' }}>
-            <a className='btn btn-outline-dark btn-lg m-2' href={AUTH_URL}>
-                <FontAwesomeIcon icon={faSpotify} size='4x' className='hover:text-green' />
+            <a className='btn btn-outline-dark btn-lg m-2 border-0' href={AUTH_URL}>
+                <FontAwesomeIcon icon={faSpotify} size='4x' className='text-success' />
             </a>
-            <a className='btn btn-outline-dark btn-lg m-2' href=''>
+            <a className='btn btn-outline-dark btn-lg m-2 border-0' href=''>
                 <FontAwesomeIcon icon={faSoundcloud} size='4x' className='' />
             </a>
-            <a className='btn btn-outline-dark btn-lg m-2' href=''>
-                <FontAwesomeIcon icon={faApple} size='4x' className='' />
+            <a className='btn btn-outline-dark btn-lg m-2 border-0' href=''>
+                <FontAwesomeIcon icon={faApple} size='4x' className='text-light' />
             </a>
-            <a className='btn btn-outline-dark btn-lg m-2' href=''>
-                <FontAwesomeIcon icon={faYoutube} size='4x' className='hover:text-red-500' />
+            <a className='btn btn-outline-dark btn-lg m-2 border-0' href=''>
+                <FontAwesomeIcon icon={faYoutube} size='4x' className='text-danger' />
             </a>
         </Container>
     )

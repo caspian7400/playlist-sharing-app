@@ -2,15 +2,20 @@ import { useEffect, useState } from 'react';
 import useAuth from '../useAuth';
 import { Container } from 'react-bootstrap';
 import SpotifyWebApi from 'spotify-web-api-node';
+import Playlist from './components/playlist';
+import User from './components/User';
+import PropTypes from 'prop-types';
+
 
 const spotifyApi = new SpotifyWebApi({
     clientId: '3acea078e39840f395aab879e491c043',
 })
-// eslint-disable-next-line react/prop-types
 export default function Dashboard({ code }) {
     const accessToken = useAuth(code);
     const [playlists, setPlaylists] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [userData, setUserData] = useState({});
+
     useEffect(() => {
         if (!accessToken) return;
         setLoading(true);
@@ -18,22 +23,37 @@ export default function Dashboard({ code }) {
         let container = [];
         let offset = 0;
         const limit = 50;
-
+        const fetchUserData = async () => {
+            try {
+                const data = await spotifyApi.getMe();
+                setUserData(data.body);
+            } catch (error) {
+                console.log(error);
+            }
+        }
         const fetchPlaylists = async () => {
             try {
                 // eslint-disable-next-line no-constant-condition
                 while (true) {
                     const data = await spotifyApi.getUserPlaylists({ limit, offset });
+                    console.log(data.body.items.map(item => item.images));
                     if (!data.body.items.length) {
                         break;
                     }
-                    // container = container.concat((data.body.items.filter(item => item.owner.display_name != 'Spotify')).map(item => { ({ name: item.name, id: item.id, images: item.images }) }));
+
+                    container = container.concat((data.body.items.filter(item => (item.owner.display_name != 'Spotify' && item.tracks.total != 0))).map(item => ({
+                        name: item.name,
+                        id: item.id,
+                        images: item.images,
+                        tracks: item.tracks,
+                        owner: item.owner,
+                        public: item.public
+                    })));
                     if (!data.body.next) {
                         break;
                     }
                     offset += limit;
                 }
-                console.log(container);
                 setPlaylists(container);
                 setLoading(false);
             } catch (error) {
@@ -41,21 +61,30 @@ export default function Dashboard({ code }) {
             }
         };
         fetchPlaylists();
+        fetchUserData();
     }, [accessToken]);
     return (
-        <Container>
-            {loading ? (
-                <p>Loading playlists...</p>
-            ) : (
-                <div>
-                    {playlists.map((playlist) => (
-                        <div key={playlist.id}>
-                            <h3>{playlist.name}</h3>
-                            <img src={playlist.images[0].url} alt={playlist.playlistName} style={{ width: '100px', height: '100px' }} />
-                        </div>
-                    ))}
-                </div>
-            )}
-        </Container>
+        <>
+            {
+                loading ? (
+                    <p> Loading playlists...</p >
+                ) : (
+                    <>
+                        <User userData={userData}></User>
+                        <Container fluid>
+                            <div className='d-flex flex-wrap' style={{marginLeft:'5%'}}>
+                                {playlists.map((playlist) => (
+                                    <Playlist playlist={playlist} key={playlist.id} />
+                                ))}
+                            </div>
+                        </Container>
+                    </>
+                )
+            }
+        </>
     )
+}
+
+Dashboard.propTypes = {
+    code: PropTypes.string.isRequired,
 }
