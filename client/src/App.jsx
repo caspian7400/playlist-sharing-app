@@ -3,7 +3,20 @@ import querystring from 'querystring'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpotify, faApple, faYoutube } from '@fortawesome/free-brands-svg-icons'
-import { Container } from 'react-bootstrap'
+import { Container, Button } from 'react-bootstrap'
+
+const amazonFunction = () => {
+    window.onAmazonLoginReady = function () {
+        // eslint-disable-next-line no-undef
+        amazon.Login.setClientId('YOUR-CLIENT-ID');
+    };
+    (function (d) {
+        var a = d.createElement('script'); a.type = 'text/javascript';
+        a.async = true; a.id = 'amazon-login-sdk';
+        a.src = 'https://assets.loginwithamazon.com/sdk/na/login1.js';
+        d.getElementById('amazon-root').appendChild(a);
+    })(document);
+}
 
 var scope = 'user-read-private user-read-email user-library-read user-library-modify playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public';
 const AUTH_URL = 'https://accounts.spotify.com/authorize?' +
@@ -16,17 +29,18 @@ const AUTH_URL = 'https://accounts.spotify.com/authorize?' +
 export default function Login() {
     return (
         <Container className='d-flex justify-content-center align-items-center' style={{ minHeight: '100vh', width: 'auto', backgroundColor: 'black' }}>
-            <a className='btn btn-outline-dark btn-lg m-2 border-0' href={AUTH_URL}>
-                <FontAwesomeIcon icon={faSpotify} size='4x' className='text-success' />
+            <div id="amazon-root"></div>
+            <a className='btn btn-lg m-2 border-0' href={AUTH_URL}>
+                <FontAwesomeIcon icon={faSpotify} size='4x' className='text-light' />
             </a>
-            <a className='btn btn-outline-dark btn-lg m-2 border-0' href=''>
+            <Button className='btn-lg m-2 border-0 bg-black' onClick={amazonFunction}>
                 <img src="../assets/amazon_music/dark/icons8-amazon-music-100.svg" alt="" />
-            </a>
-            <a className='btn btn-outline-dark btn-lg m-2 border-0' href=''>
+            </Button>
+            <a className='btn btn-lg m-2 border-0' href=''>
                 <FontAwesomeIcon icon={faApple} size='4x' className='text-light' />
             </a>
-            <a className='btn btn-outline-dark btn-lg m-2 border-0' href=''>
-                <FontAwesomeIcon icon={faYoutube} size='4x' className='text-danger' />
+            <a className='btn btn-lg m-2 border-0' href=''>
+                <FontAwesomeIcon icon={faYoutube} size='4x' className='text-light' />
             </a>
         </Container>
     )

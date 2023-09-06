@@ -9,7 +9,7 @@ export default function useAuth(code) {
 
 
     useEffect(() => {
-        axios.post('http://localhost:3000/login', {
+        axios.post('http://localhost:3000/Spotify/login', {
             code,
         }).then(res => {
             setAccessToken(res.data.accessToken);
@@ -27,7 +27,7 @@ export default function useAuth(code) {
         if (!refreshToken || !expiresIn) return;
         const interval = setInterval(() => {
 
-            axios.post('http://localhost:3000/refresh', {
+            axios.post('http://localhost:3000/Spotify/refresh', {
                 refreshToken,
             }).then(res => {
                 console.log(res.data);

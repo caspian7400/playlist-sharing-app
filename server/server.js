@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 app.use(cors());
 app.use(bodyParser.json());
 
-app.post('/refresh', (req, res) => {
+app.post('/Spotify/refresh', (req, res) => {
     const refreshToken = req.body.refreshToken;
     const spotifyApi = new spotifyWebApi({
         redirectUri: process.env.REDIRECT_URI,
@@ -27,7 +27,7 @@ app.post('/refresh', (req, res) => {
     });
 })
 
-app.post('/login', (req, res) => {
+app.post('/Spotify/login', (req, res) => {
     const code = req.body.code;
     const spotifyApi = new spotifyWebApi({
         redirectUri: process.env.REDIRECT_URI,

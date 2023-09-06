@@ -34,5 +34,5 @@ export default function Playlist({ playlist }) {
 }
 
 Playlist.propTypes = {
-  playlist: PropTypes.object.isRequired
+  playlist: PropTypes.object
 }

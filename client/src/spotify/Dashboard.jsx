@@ -3,7 +3,7 @@ import useAuth from './useAuth';
 import { Container } from 'react-bootstrap';
 import SpotifyWebApi from 'spotify-web-api-node';
 import Playlist from '../components/Playlist';
-import User from '../components/Playlist';
+import User from '../components/User';
 import PropTypes from 'prop-types';
 
 
@@ -36,7 +36,6 @@ export default function Dashboard({ code }) {
                 // eslint-disable-next-line no-constant-condition
                 while (true) {
                     const data = await spotifyApi.getUserPlaylists({ limit, offset });
-                    console.log(data.body.items.map(item => item.images));
                     if (!data.body.items.length) {
                         break;
                     }
@@ -72,7 +71,7 @@ export default function Dashboard({ code }) {
                     <>
                         <User userData={userData}></User>
                         <Container fluid>
-                            <div className='d-flex flex-wrap' style={{marginLeft:'5%'}}>
+                            <div className='d-flex flex-wrap' style={{ marginLeft: '5%' }}>
                                 {playlists.map((playlist) => (
                                     <Playlist playlist={playlist} key={playlist.id} />
                                 ))}
