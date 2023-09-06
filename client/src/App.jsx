@@ -2,7 +2,7 @@
 import querystring from 'querystring'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSpotify, faSoundcloud, faApple, faYoutube } from '@fortawesome/free-brands-svg-icons'
+import { faSpotify, faApple, faYoutube } from '@fortawesome/free-brands-svg-icons'
 import { Container } from 'react-bootstrap'
 
 var scope = 'user-read-private user-read-email user-library-read user-library-modify playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public';
@@ -20,7 +20,7 @@ export default function Login() {
                 <FontAwesomeIcon icon={faSpotify} size='4x' className='text-success' />
             </a>
             <a className='btn btn-outline-dark btn-lg m-2 border-0' href=''>
-                <FontAwesomeIcon icon={faSoundcloud} size='4x' className='' />
+                <img src="../assets/amazon_music/dark/icons8-amazon-music-100.svg" alt="" />
             </a>
             <a className='btn btn-outline-dark btn-lg m-2 border-0' href=''>
                 <FontAwesomeIcon icon={faApple} size='4x' className='text-light' />

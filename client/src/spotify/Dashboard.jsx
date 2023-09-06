@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import useAuth from '../useAuth';
+import useAuth from './useAuth';
 import { Container } from 'react-bootstrap';
 import SpotifyWebApi from 'spotify-web-api-node';
-import Playlist from './components/playlist';
-import User from './components/User';
+import Playlist from '../components/Playlist';
+import User from '../components/Playlist';
 import PropTypes from 'prop-types';
 
 
