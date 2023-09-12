@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.post('/Spotify/refresh', (req, res) => {
     const refreshToken = req.body.refreshToken;
     const spotifyApi = new spotifyWebApi({
-        redirectUri: process.env.REDIRECT_URI,
+        redirectUri: SPOTIFY_REDIRECT_URI,
         clientId: process.env.SPOTIFY_CLIENT_ID,
         clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
         refreshToken,
@@ -23,14 +23,14 @@ app.post('/Spotify/refresh', (req, res) => {
         })
     }).catch((err) => {
         console.log(err);
-        res.sendStatus(404);
+        // res.sendStatus(404);
     });
 })
 
 app.post('/Spotify/login', (req, res) => {
     const code = req.body.code;
     const spotifyApi = new spotifyWebApi({
-        redirectUri: process.env.REDIRECT_URI,
+        redirectUri: process.env.SPOTIFY_REDIRECT_URI,
         clientId: process.env.SPOTIFY_CLIENT_ID,
         clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
     });

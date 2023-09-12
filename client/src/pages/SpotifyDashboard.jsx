@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react';
-import useAuth from './useAuth';
 import { Container } from 'react-bootstrap';
 import SpotifyWebApi from 'spotify-web-api-node';
-import Playlist from '../components/Playlist';
+import Playlist from '../components/Playlist'
+import useAuth from '../Spotify/SpotifyAuth';
 import User from '../components/User';
-import PropTypes from 'prop-types';
 
 
 const spotifyApi = new SpotifyWebApi({
     clientId: '3acea078e39840f395aab879e491c043',
 })
-export default function Dashboard({ code }) {
+const code = new URLSearchParams(window.location.search).get('code');
+
+export default function SpotifyDashboard() {
     const accessToken = useAuth(code);
     const [playlists, setPlaylists] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -25,6 +26,7 @@ export default function Dashboard({ code }) {
         const limit = 50;
         const fetchUserData = async () => {
             try {
+                console.log('pog user\n\n================================');
                 const data = await spotifyApi.getMe();
                 setUserData(data.body);
             } catch (error) {
@@ -33,6 +35,7 @@ export default function Dashboard({ code }) {
         }
         const fetchPlaylists = async () => {
             try {
+                console.log('pog\n\n');
                 // eslint-disable-next-line no-constant-condition
                 while (true) {
                     const data = await spotifyApi.getUserPlaylists({ limit, offset });
@@ -84,6 +87,3 @@ export default function Dashboard({ code }) {
     )
 }
 
-Dashboard.propTypes = {
-    code: PropTypes.string.isRequired,
-}
