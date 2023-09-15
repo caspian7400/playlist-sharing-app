@@ -1,10 +1,12 @@
 import { Button, Container } from 'react-bootstrap'
 import { useState } from 'react'
-const testFunction = () => console.log('test');
-
+const testFunction = () => {
+    console.log('test')
+    return 0;
+};
+console.log('hi');
 export default function Test() {
-    testFunction();
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(testFunction());
     const btnHandler = () => setCount(count + 1);
     return (
         <Container className='d-flex-column align-items-center' fluid>

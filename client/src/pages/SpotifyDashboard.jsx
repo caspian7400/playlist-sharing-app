@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
+// import PropTypes from 'prop-types';
 import SpotifyWebApi from 'spotify-web-api-node';
 import Playlist from '../components/Playlist'
-import useAuth from '../Spotify/SpotifyAuth';
+import useAuth from '../auth/SpotifyAuth';
 import User from '../components/User';
 
 
@@ -11,12 +12,12 @@ const spotifyApi = new SpotifyWebApi({
 })
 const code = new URLSearchParams(window.location.search).get('code');
 
+
 export default function SpotifyDashboard() {
     const accessToken = useAuth(code);
     const [playlists, setPlaylists] = useState([]);
     const [loading, setLoading] = useState(true);
     const [userData, setUserData] = useState({});
-
     useEffect(() => {
         if (!accessToken) return;
         setLoading(true);
@@ -26,7 +27,6 @@ export default function SpotifyDashboard() {
         const limit = 50;
         const fetchUserData = async () => {
             try {
-                console.log('pog user\n\n================================');
                 const data = await spotifyApi.getMe();
                 setUserData(data.body);
             } catch (error) {
@@ -35,7 +35,6 @@ export default function SpotifyDashboard() {
         }
         const fetchPlaylists = async () => {
             try {
-                console.log('pog\n\n');
                 // eslint-disable-next-line no-constant-condition
                 while (true) {
                     const data = await spotifyApi.getUserPlaylists({ limit, offset });
@@ -86,4 +85,3 @@ export default function SpotifyDashboard() {
         </>
     )
 }
-

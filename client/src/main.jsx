@@ -1,11 +1,11 @@
-import React from 'react'
+// import React from 'react'
 import ReactDOM from 'react-dom/client'
-// import App from './App'
+import App from './App'
 import 'bootstrap/dist/css/bootstrap.css'
-import Test from './Test'
+// import Test from './Test'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <Test />
-  </React.StrictMode>
+  <>
+    <App />
+  </>
 )
