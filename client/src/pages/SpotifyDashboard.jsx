@@ -22,9 +22,6 @@ export default function SpotifyDashboard() {
         if (!accessToken) return;
         setLoading(true);
         spotifyApi.setAccessToken(accessToken);
-        let container = [];
-        let offset = 0;
-        const limit = 50;
         const fetchUserData = async () => {
             try {
                 const data = await spotifyApi.getMe();
@@ -34,6 +31,9 @@ export default function SpotifyDashboard() {
             }
         }
         const fetchPlaylists = async () => {
+            let container = [];
+            let offset = 0;
+            const limit = 50;
             try {
                 // eslint-disable-next-line no-constant-condition
                 while (true) {
