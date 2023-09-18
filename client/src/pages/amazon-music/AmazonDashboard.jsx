@@ -2,7 +2,7 @@
 // amazon music api not accessible yet. :(
 
 import { useState, useEffect } from 'react';
-import useAuth from "../auth/AmazonAuth";
+import useAuth from "../../auth/AmazonAuth";
 import axios from 'axios';
 import querystring from 'querystring'
 

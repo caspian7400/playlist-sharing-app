@@ -6,7 +6,7 @@ export default function useAuth(code) {
     const [refreshToken, setRefreshToken] = useState();
     const [expiresIn, setExpiresIn] = useState();
     useEffect(() => {
-        axios.post('http://localhost:3000/amazon/login', {
+        axios.post('http://localhost:3000/amazon-music/login', {
             code,
         }).then((res) => {
             setAccessToken(res.data.accessToken);
@@ -22,7 +22,7 @@ export default function useAuth(code) {
     useEffect(() => {
         if (!refreshToken || !expiresIn) return;
         const interval = setInterval(() => {
-            axios.post('http://localhost:3000/amazon/refresh', {
+            axios.post('http://localhost:3000/amazon-music/refresh', {
                 refreshToken,
             }).then((res) => {
                 setAccessToken(res.data.accessToken);

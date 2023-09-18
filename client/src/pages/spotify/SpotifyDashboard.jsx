@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
-// import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import SpotifyWebApi from 'spotify-web-api-node';
-import Playlist from '../components/Playlist'
-import useAuth from '../auth/SpotifyAuth';
-import User from '../components/User';
-
+import Playlist from '../../components/Playlist'
+import useAuth from '../../auth/SpotifyAuth';
+import User from '../../components/User';
 
 const spotifyApi = new SpotifyWebApi({
     clientId: '3acea078e39840f395aab879e491c043',
@@ -71,11 +70,13 @@ export default function SpotifyDashboard() {
                     <p> Loading playlists...</p >
                 ) : (
                     <>
-                        <User userData={userData}></User>
+                        <User userData={userData} />
                         <Container fluid>
                             <div className='d-flex flex-wrap' style={{ marginLeft: '5%' }}>
                                 {playlists.map((playlist) => (
-                                    <Playlist playlist={playlist} key={playlist.id} />
+                                    <Link to={`playlist/${playlist.id}/tracks`} state={{ accessToken, playlist }} key={playlist.id} className='d-flex text-decoration-none' style={{ flexBasis: '180px', paddingLeft: '5%' }}>
+                                        <Playlist playlist={playlist} />
+                                    </Link>
                                 ))}
                             </div>
                         </Container>

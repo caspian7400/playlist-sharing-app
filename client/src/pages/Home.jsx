@@ -1,18 +1,20 @@
 import querystring from 'querystring'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSpotify, faApple, faYoutube } from '@fortawesome/free-brands-svg-icons'
+import { faSpotify, /*faApple, faYoutube*/ } from '@fortawesome/free-brands-svg-icons'
 import { Container } from 'react-bootstrap'
 // import random from 'random-string-generator'
 // import { encode as base64encode } from 'base64-arraybuffer'
 
-const AMAZON_AUTH_URL = 'https://www.amazon.com/ap/oa?' +
-    querystring.stringify({
-        client_id: 'amzn1.application-oa2-client.16fc1ce53e564d7195cad733e0600fdd',
-        scope: 'profile',
-        response_type: 'code',
-        redirect_uri: 'http://localhost:5173/amazon/dashboard',
-    });
+/*********************** wait for amazon music api to be accessible *************************/
+
+// const AMAZON_AUTH_URL = 'https://www.amazon.com/ap/oa?' +
+//     querystring.stringify({
+//         client_id: 'amzn1.application-oa2-client.16fc1ce53e564d7195cad733e0600fdd',
+//         scope: 'profile',
+//         response_type: 'code',
+//         redirect_uri: 'http://localhost:5173/amazon/dashboard',
+//     });
 
 /****************************TODO******************/
 // PKCE for security
@@ -48,9 +50,9 @@ export default function Home() {
     return (
         <Container className='d-flex justify-content-center align-items-center' style={{ minHeight: '100vh', width: 'auto', backgroundColor: 'black' }}>
             <a className='btn btn-lg m-2 border-0' href={SPOTIFY_AUTH_URL}>
-                <FontAwesomeIcon icon={faSpotify} size='4x' className='text-light' />
+                <FontAwesomeIcon icon={faSpotify} size='4x' style={{ color: '#1DB954' }} />
             </a>
-            <a className='btn btn-lg m-2 border-0' href={AMAZON_AUTH_URL}>
+            {/* <a className='btn btn-lg m-2 border-0' href={AMAZON_AUTH_URL}>
                 <img src="../assets/amazon_music/dark/icons8-amazon-music-100.svg" alt="" />
             </a>
             <a className='btn btn-lg m-2 border-0' href=''>
@@ -58,6 +60,10 @@ export default function Home() {
             </a>
             <a className='btn btn-lg m-2 border-0' href=''>
                 <FontAwesomeIcon icon={faYoutube} size='4x' className='text-light' />
+            </a> */}
+
+            <a className='btn btn-lg m-2 border-0' href="">
+                <img src='../assets/deezer/EQ.svg' alt="" />
             </a>
         </Container>
     )

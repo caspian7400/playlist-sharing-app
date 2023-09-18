@@ -9,6 +9,8 @@ const axios = require('axios');
 app.use(cors());
 app.use(bodyParser.json());
 
+/********************** spotify section ***********************/
+
 app.post('/spotify/refresh', (req, res) => {
     const refreshToken = req.body.refreshToken;
     const spotifyApi = new spotifyWebApi({
@@ -36,7 +38,8 @@ app.post('/spotify/login', (req, res) => {
         clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
     });
     spotifyApi.authorizationCodeGrant(code).then((data) => {
-        console.log(data);
+        console.log('status code:' + data.statusCode);
+        console.log('received access token details\n');
         res.json({
             accessToken: data.body.access_token,
             refreshToken: data.body.refresh_token,
@@ -50,7 +53,9 @@ app.post('/spotify/login', (req, res) => {
 
 
 
-app.post('/amazon/login', (req, res) => {
+/********************* amazon section **********************/
+
+app.post('/amazon-music/login', (req, res) => {
     const code = req.body.code;
     axios.post('https://api.amazon.com/auth/o2/token', {
         grant_type: 'authorization_code',
@@ -75,7 +80,7 @@ app.post('/amazon/login', (req, res) => {
     })
 })
 
-app.post('/amazon/refresh', (req, res) => {
+app.post('/amazon-music/refresh', (req, res) => {
     const refreshToken = req.body.refreshToken;
     axios.post('https://api.amazon.com/auth/o2/token', {
         grant_type: 'refresh_token',
@@ -97,6 +102,11 @@ app.post('/amazon/refresh', (req, res) => {
         res.sendStatus(404);
     })
 })
+
+/************************** deezer section *****************************/
+
+app.post('/deezer/login', (req, res) => {});
+app.post('/deezer/refresh',(req,res)=>{});
 
 app.listen(3000, () => {
     console.log(`Server is running on port ${process.env.PORT}`);
