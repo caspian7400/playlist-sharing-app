@@ -1,6 +1,7 @@
 import Playlist from '../../components/Playlist';
-import axios from 'axios';
+import Track from '../../components/Track';
 import SpotifyWebApi from 'spotify-web-api-node';
+import { Container } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 
 import { useLocation } from "react-router-dom"
@@ -13,6 +14,7 @@ export default function SpotifyTracks() {
     let { state } = useLocation();
     const [loading, setLoading] = useState(true);
     const [tracks, setTracks] = useState([]);
+    const [duration , setDuration] = useState(0);
     const accessToken = state.accessToken;
     const playlist = state.playlist;
     useEffect(() => {
@@ -27,7 +29,6 @@ export default function SpotifyTracks() {
                 offset: 0,
                 limit: 50,
             }
-            let count = 0
             try {
                 // eslint-disable-next-line no-constant-condition
                 while (true) {
@@ -39,7 +40,8 @@ export default function SpotifyTracks() {
                         name: item.track.name,
                         id: item.track.id,
                         duration: item.track.duration_ms,
-                        album: item.track.album,
+                        album: item.track.album.name,
+                        images: item.track.album.images,                     
                         artists: item.track.artists,
                         explicit: item.track.explicit,
                         popularity: item.track.popularity,
@@ -49,10 +51,6 @@ export default function SpotifyTracks() {
                         break;
                     }
                     config.offset = config.offset + config.limit;
-                    count++;
-                    if (count > 3) {
-                        break;
-                    }
                 }
                 setTracks(container);
                 setLoading(false);
@@ -63,22 +61,38 @@ export default function SpotifyTracks() {
         fetchTracks();
 
     }, [accessToken, playlist]);
-    axios.get()
+
+    useEffect(()=>{
+        let time = 0
+        tracks.forEach(item=>{
+            time+=item.duration
+        });
+        setDuration(time);
+
+    },[tracks])
     return (
         <>{
             loading ? (
                 <p> Loading tracks... </p>
             ) : (
-                <>
+                <Container fluid>
                     <div>
-                        <Playlist playlist={playlist} />
+
                     </div>
                     <div>
-                        {tracks.map(item => (<div key={item.id}>{item.name}</div>))}
+                        {tracks.map(track => (<Track key={track.id} track={track} />))}
                     </div>
-                </>
+                </Container>
             )
         }
         </>
     )
+}
+
+const hourFormat = (time_ms) => {
+    const ms_to_hour = 3600000; // 60 x 60 x 1000
+    let output = time_ms / ms_to_hour;
+    const hour = parseInt(output);
+    const minutes = parseInt((output - hour) * 60);
+    return `${hour}h ${minutes}m`;
 }
