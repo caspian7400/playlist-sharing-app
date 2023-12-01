@@ -1,5 +1,7 @@
 // import React from 'react'
 import { Container, Offcanvas, Navbar, Form, InputGroup } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser } from "@fortawesome/free-solid-svg-icons"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import PropTypes from 'prop-types'
 
@@ -23,9 +25,9 @@ export default function User({ userData }) {
                             <div className=' rounded-circle w-50 h-50'>
                                 {
                                     userData.images.length === 0 ?
-                                        <div style={{height:'150px',width:'150px'}}>
-                                            <div className='bg-success rounded-circle h-100 w-100'>
-                                                {/* <b className='position-fixed text-black'>{userData.display_name[0]}</b> */}
+                                        <div style={{ height: '150px', width: '150px' }}>
+                                            <div className='bg-success rounded-circle h-100 d-flex justify-content-center align-items-center'>
+                                                <FontAwesomeIcon icon={faUser} size="4x" />
                                             </div>
                                         </div>
                                         :
@@ -41,8 +43,8 @@ export default function User({ userData }) {
             </Navbar>
             <div className='d-flex-row'>
                 <div className='' style={{ width: '100px', height: '100px' }}>
-                    <div className='rounded-circle bg-success w-100 h-100'>
-                        <img src={userData.images[0]} alt={userData.login} className='w-100 h-100 border-0' />
+                    <div className='rounded-circle h-100 d-flex justify-content-center align-items-center'>
+                        <FontAwesomeIcon icon={faUser} size="4x" />
                     </div>
                 </div>
                 <div className='d-flex flex-grow-2'>
