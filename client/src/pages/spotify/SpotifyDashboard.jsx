@@ -67,7 +67,7 @@ export default function SpotifyDashboard() {
         <>
             {
                 loading ? (
-                    <p> Loading playlists...</p >
+                    <p> Loading playlists...</p>
                 ) : (
                     <>
                         <User userData={userData} />
