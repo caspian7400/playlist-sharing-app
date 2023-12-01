@@ -1,3 +1,5 @@
+//TODO: add navbar to dashboards ffs
+
 import querystring from 'querystring'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
