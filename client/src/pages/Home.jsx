@@ -1,10 +1,9 @@
 //TODO: add navbar to dashboards ffs
 
-import querystring from 'querystring'
-import 'bootstrap-icons/font/bootstrap-icons.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSpotify, /*faApple, faYoutube*/ } from '@fortawesome/free-brands-svg-icons'
-import { Container } from 'react-bootstrap'
+import querystring from 'querystring';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import '../styles/homepage/styles.css';
+import { Container } from 'react-bootstrap';
 // import random from 'random-string-generator'
 // import { encode as base64encode } from 'base64-arraybuffer'
 
@@ -50,23 +49,29 @@ const SPOTIFY_AUTH_URL = 'https://accounts.spotify.com/authorize?' +
 
 export default function Home() {
     return (
-        <Container className='d-flex justify-content-center align-items-center' style={{ minHeight: '100vh', width: 'auto', backgroundColor: 'black' }}>
-            <a className='btn btn-lg m-2 border-0' href={SPOTIFY_AUTH_URL}>
-                <FontAwesomeIcon icon={faSpotify} size='4x' style={{ color: '#1DB954' }} />
-            </a>
-            {/* <a className='btn btn-lg m-2 border-0' href={AMAZON_AUTH_URL}>
-                <img src="../assets/amazon_music/dark/icons8-amazon-music-100.svg" alt="" />
-            </a>
-            <a className='btn btn-lg m-2 border-0' href=''>
-                <FontAwesomeIcon icon={faApple} size='4x' className='text-light' />
-            </a>
-            <a className='btn btn-lg m-2 border-0' href=''>
-                <FontAwesomeIcon icon={faYoutube} size='4x' className='text-light' />
-            </a> */}
-
-            <a className='btn btn-lg m-2 border-0' href="">
-                <img src='../assets/deezer/EQ.svg' alt="" />
-            </a>
+        <Container className='d-flex justify-content-center align-items-center' style={{ minHeight: '100vh', backgroundColor: '#F0D60C' }}>
+            <div className='icon-container'>
+                <a className='btn btn-lg m-2 border-0' href={SPOTIFY_AUTH_URL}>
+                    <div className='icon'>
+                        <img src='../assets/spotify/icons8-spotify.svg'></img>
+                    </div>
+                </a>
+                <a className='btn btn-lg m-2 border-0' href="">
+                    <div className='icon'>
+                        <img src='../assets/amazon_music/icons8-amazon-music.svg' alt="" />
+                    </div>
+                </a>
+                <a className='btn btn-lg m-2 border-0' href="">
+                    <div className='icon'>
+                        <img src='../assets/apple/icons8-apple-music.svg' alt="" />
+                    </div>
+                </a>
+                <a className='btn btn-lg m-2 border-0' href="">
+                    <div className='icon'>
+                        <img src='../assets/youtube-music/icons8-youtube-music.svg' alt="" />
+                    </div>
+                </a>
+            </div>
         </Container>
     )
 }
