@@ -1,0 +1,31 @@
+.playlist-container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    background-color: white;
+    border: 3px solid black;
+    border-radius: 8px;
+    padding: 12px;
+    transition: all 300ms;
+}
+
+.playlist-container:hover {
+    box-shadow: 8px 8px black;
+    transform: translate(-8px, -8px);
+}
+
+.playlist-img img{
+    border-radius: 8px;
+    border: 2px solid black;
+}
+
+.bold-text {
+    color: black;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.bold-icon {
+    color: black;
+    font-weight: bolder;
+}
