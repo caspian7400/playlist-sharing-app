@@ -14,7 +14,8 @@ dist-ssr
 yarn.lock
 
 # Editor directories and files
-Test.jsx
+.yarn
+.yarnrc.yml
 .env
 package-lock.json
 .vscode/*
@@ -26,3 +27,4 @@ package-lock.json
 *.njsproj
 *.sln
 *.sw?
+Test.jsx
