@@ -27,4 +27,4 @@ package-lock.json
 *.njsproj
 *.sln
 *.sw?
-Test.jsx
+client/src/test
