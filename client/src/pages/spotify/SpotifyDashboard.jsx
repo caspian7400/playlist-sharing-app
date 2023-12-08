@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import SpotifyWebApi from 'spotify-web-api-node';
 import Playlist from '../../components/Playlist'
 import useAuth from '../../auth/SpotifyAuth';
-import User from '../../components/User';
+// import User from '../../components/User';
+import MyNavbar from '../../components/MyNavbar';
 
 const spotifyApi = new SpotifyWebApi({
     clientId: '3acea078e39840f395aab879e491c043',
@@ -70,7 +71,7 @@ export default function SpotifyDashboard() {
                     <p> Loading playlists...</p>
                 ) : (
                     <>
-                        <User userData={userData} />
+                        <MyNavbar userData={userData} />
                         <Container fluid>
                             <div className='d-flex flex-wrap' style={{ marginLeft: '5%' }}>
                                 {playlists.map((playlist) => (
