@@ -10,6 +10,7 @@
 }
 
 .profile-container {
+    background-color: #D9F5F0 !important;
     display: flex;
     justify-content: center;
     padding: 10px 4px;

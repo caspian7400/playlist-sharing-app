@@ -1,4 +1,4 @@
-import Playlist from '../../components/Playlist';
+// import Playlist from '../../components/Playlist';
 import Track from '../../components/Track';
 import SpotifyWebApi from 'spotify-web-api-node';
 import { Container } from 'react-bootstrap';
@@ -77,7 +77,7 @@ export default function SpotifyTracks() {
             ) : (
                 <Container fluid>
                     <div>
-
+                        this playlist is {hourFormat(duration)} long
                     </div>
                     <div>
                         {tracks.map(track => (<Track key={track.id} track={track} />))}

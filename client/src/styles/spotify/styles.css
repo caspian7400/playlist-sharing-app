@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-content: center;
-    background-color: white;
+    background-color: #FAF2DE;
     border: 3px solid black;
     border-radius: 8px;
     padding: 12px;
@@ -28,4 +28,23 @@
 .bold-icon {
     color: black;
     font-weight: bolder;
+}
+
+.track-container {
+    padding: 15px 10px;
+    background-color: white;
+    border: 3px solid black;
+    border-radius: 15px;
+    transition: all 400ms;
+}
+
+
+.track-container:hover{
+    box-shadow: 5px 5px black;
+    transform: translate(-5px, -5px);
+}
+
+.track-container img{
+    border: 2px solid black;
+    border-radius: 8px;
 }
