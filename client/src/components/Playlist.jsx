@@ -14,7 +14,7 @@ export default function Playlist({ playlist }) {
           name: <b>{playlist.name}</b>
         </h3>
         <h3 className='bold-text' style={{ fontSize: '0.75rem' }}>
-          owner: <a href={playlist.owner.external_urls.spotify} className='text-light link-underline-light link-underline-opacity-0 link-underline-opacity-100-hover'>
+          owner: <a href={playlist.owner.external_urls.spotify} className='text-dark link-underline-light link-underline-opacity-0 link-underline-opacity-100-hover'>
             <b>{playlist.owner.display_name}</b>
           </a>
         </h3>
