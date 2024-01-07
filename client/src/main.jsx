@@ -1,8 +1,8 @@
 // import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
 import 'bootstrap/dist/css/bootstrap.css'
-// import Test from './Test'
+import App from './App'
+import Test from './test/Test'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <>
