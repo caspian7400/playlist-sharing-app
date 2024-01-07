@@ -49,7 +49,7 @@ const SPOTIFY_AUTH_URL = 'https://accounts.spotify.com/authorize?' +
 
 export default function Home() {
     return (
-        <Container className='d-flex justify-content-center align-items-center' style={{ minHeight: '100vh', backgroundColor: '#F0D60C' }}>
+        <Container className='d-flex justify-content-center align-items-center' style={{ minHeight: '100vh', backgroundColor: '#FDC0CA' }}>
             <div className='icon-container'>
                 <a className='btn btn-lg m-2 border-0' href={SPOTIFY_AUTH_URL}>
                     <div className='icon'>
